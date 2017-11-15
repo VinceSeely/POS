@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace POSApp.Controllers
+namespace POSAPP.Controllers
 {
     public class HomeController : Controller
     {
