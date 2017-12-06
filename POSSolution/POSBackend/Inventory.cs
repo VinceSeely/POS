@@ -16,12 +16,18 @@ namespace POSBackend
          */
         private Item search(Item item)
         {
-            return inventory.Find(item);
+            return inventory.FirstOrDefault(product => product == item);
         }
 
         public void addItem(Item item)
         {
-            
+            Item itemFound = search(item);
+
+            if (itemFound != null)
+                ;// update existing item count
+
+            else
+                inventory.Add(item);                
         }
     }
 }
