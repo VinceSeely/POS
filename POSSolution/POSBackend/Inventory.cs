@@ -8,7 +8,7 @@ namespace POSBackend
 {
     class Inventory
     {
-        private List<Item> inventory;
+        private List<ItemQuantityPair> inventory;
         private List<Coupon> couponList;
 
         /**
@@ -16,7 +16,7 @@ namespace POSBackend
          */
         private Item search(Item item)
         {
-            return inventory.FirstOrDefault(product => product == item);
+            return inventory.
         }
 
         /**

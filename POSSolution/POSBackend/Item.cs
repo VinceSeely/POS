@@ -11,14 +11,13 @@ namespace POSBackend
         private int sku;
         private string type;
         private string department;
-        private int count;              // This should be a part of inventory
-        private decimal price;
+        private float price;
         private int orderMoreLevel;
         private double AvgPerDay;
         private List<Retailer> retailerList = new List<Retailer>();
 
 
-        public Item(string name, int sku, string department, string type, int orderMoreLevel, decimal price)
+        public Item(string name, int sku, string department, string type, int orderMoreLevel, float price)
         {
             this.name = name;
             this.sku = sku;
@@ -29,7 +28,7 @@ namespace POSBackend
 
         }
 
-        public decimal Price()
+        public float Price()
         {
             return price;
         }
@@ -84,6 +83,14 @@ namespace POSBackend
         public void UpdateOrderLevel(int newLevel)
         {
             orderMoreLevel = newLevel;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var realObj = obj as Item;
+            if (realObj == null)
+                return false;
+            return sku.Equals(realObj.sku);
         }
     }
 }

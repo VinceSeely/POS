@@ -7,7 +7,7 @@ namespace POSBackend
      */
     internal class Coupon
     {
-        internal decimal Discount()
+        internal float Discount(float price)
         {
             throw new NotImplementedException();
         }

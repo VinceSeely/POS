@@ -11,42 +11,27 @@ namespace POSBackend
     /// </summary>
     class Cart
     {
-        /// <summary>
-        /// Pairing of an item and the quantity of that item 
-        /// </summary>
-        private class ItemQuantityPair
-        {
-            public ItemQuantityPair(Item newItem, int newQuantity)
-            {
-                item = newItem;
-                quantity = newQuantity;
-            }
-
-            public Item item { get; set; }
-
-            public int quantity { get; set; }
-        }
-
+        
         private List<ItemQuantityPair> items;
-        private String username;
+        private Guid userID;
         private List<Coupon> coupons;
-        private decimal total = 0;
+        private float total = 0;
 
-        /// <summary>
-        /// returns the index of the item in the cart or -1 if not found
-        /// </summary>
-        /// <param name="sku"></param>
-        /// <returns></returns>
-        private int lookFor(int sku)
-        {
-            foreach (ItemQuantityPair subject in items)
-            {
-                if (subject.item.SKU() == sku)
-                    return items.IndexOf(subject);
-            }
+        ///// <summary>
+        ///// returns the index of the item in the cart or -1 if not found
+        ///// </summary>
+        ///// <param name="sku"></param>
+        ///// <returns></returns>
+        //private int lookFor(int sku)
+        //{
+        //    foreach (ItemQuantityPair subject in items)
+        //    {
+        //        if (subject.item.SKU() == sku)
+        //            return items.IndexOf(subject);
+        //    }
 
-            return -1;
-        }
+        //    return -1;
+        //}
 
         /// <summary>
         /// Adds num of item to the cart
@@ -56,7 +41,8 @@ namespace POSBackend
         public void addItem(Item item, int num)
         {
             //find the index of the item in the cart if available
-            int index = lookFor(item.SKU());
+            //int index = lookFor(item.SKU());
+            int index = items.IndexOf(new ItemQuantityPair(item, 0));
 
             //if the one of the item is in the cart update the quantity
             if (index != -1)
@@ -73,14 +59,15 @@ namespace POSBackend
         }
 
         /// <summary>
-        /// Removes num items from the cart that have the given sku
+        /// Removes num of the given item from the cart
         /// </summary>
-        /// <param name="sku">sku of the item to be removed</param>
+        /// <param name="item">item to be removed</param>
         /// <param name="num">number of specified number to be removed</param>
-        public void removeItem(int sku, int num)
+        public void removeItem(Item item, int num)
         {
             //find the index of the item in the cart
-            int index = lookFor(sku);
+            //int index = lookFor(sku);
+            int index = items.IndexOf(new ItemQuantityPair(item, 0));
 
             //if user is removing all of the item remove it from the list
             if (num >= items[index].quantity)
@@ -114,7 +101,7 @@ namespace POSBackend
 
             // Subtract the discounts from all coupons
             foreach (Coupon cou in coupons)
-                total -= cou.Discount();
+                total -= cou.Discount(total); // may or may not change param
         }
     }
 }
