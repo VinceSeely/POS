@@ -11,19 +11,27 @@ namespace POSBackend
         private int sku;
         private string type;
         private string department;
-        private int count;
+        private int count;              // This should be a part of inventory
+        private decimal price;
         private int orderMoreLevel;
         private double AvgPerDay;
         private List<Retailer> retailerList = new List<Retailer>();
 
 
-        public Item(string name, int sku, string department, string type, int orderMoreLevel)
+        public Item(string name, int sku, string department, string type, int orderMoreLevel, decimal price)
         {
             this.name = name;
             this.sku = sku;
             this.department = department;
             this.type = type;
             this.orderMoreLevel = orderMoreLevel;
+            this.price = price;
+
+        }
+
+        public decimal Price()
+        {
+            return price;
         }
 
         public int SKU()
@@ -57,7 +65,7 @@ namespace POSBackend
 
         public bool RemoveRetailer(Retailer retailer)
         {
-            if (RetailerInList(retailer))
+            if (RetailerInList(retailer.ID()))
             {
                 retailerList.Remove(retailer);
                 return true;
@@ -70,7 +78,7 @@ namespace POSBackend
 
         public void UpdateCount(int newCount)
         {
-            count = newcount;
+            count = newCount;
         }
 
         public void UpdateOrderLevel(int newLevel)
