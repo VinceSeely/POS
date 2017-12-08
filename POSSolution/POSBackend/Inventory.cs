@@ -19,6 +19,11 @@ namespace POSBackend
             return inventory.FirstOrDefault(product => product == item);
         }
 
+        /**
+         * Searches for an item in the inventory
+         * if item is found it increments the count according to added item count
+         * if item is not found it creates a new item in inventory and adds the correct number of items
+         */
         public void addItem(Item item)
         {
             Item itemFound = search(item);
