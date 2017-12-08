@@ -7,6 +7,10 @@ namespace POSBackend
      */
     public class Item
     {
+<<<<<<< HEAD
+        private int SKU;
+        private string ItemName;
+=======
         private string name;
         private int sku;
         private string type;
@@ -77,5 +81,6 @@ namespace POSBackend
         {
             orderMoreLevel = newLevel;
         }
+>>>>>>> 0c0f9b88e2b6a73abfe1d53cce4debf306069ebf
     }
 }
