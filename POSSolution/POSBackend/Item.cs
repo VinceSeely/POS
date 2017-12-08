@@ -1,4 +1,6 @@
-﻿namespace POSBackend
+﻿using System.Collections.Generic;
+
+namespace POSBackend
 {
     public class Item
     {
@@ -7,9 +9,9 @@
         private string type;
         private string department;
         private int count;
-        private int OrderMoreLevel;
+        private int orderMoreLevel;
         private double AvgPerDay;
-        private List<Retailer> retailerList = new List<>();
+        private List<Retailer> retailerList = new List<Retailer>();
 
 
         public Item(string name, int sku, string department, string type, int orderMoreLevel)
@@ -37,6 +39,17 @@
             }
 
             return true;
+        }
+
+        private bool RetailerInList(int id)
+        {
+            foreach(Retailer element in retailerList)
+            {
+                if (element.ID() == id)
+                    return true;
+            }
+
+            return false;
         }
 
         public bool RemoveRetailer(Retailer retailer)
