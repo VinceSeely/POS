@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace POSBackend
 {
+    public struct Address
+    {
+
+    }
     class Retailer
     {
         private int supplierID;
