@@ -8,5 +8,12 @@ namespace POSBackend
 {
     class User
     {
+
+
+        public void EditPhoneNumber(int number)
+        {
+
+        }
+
     }
 }
