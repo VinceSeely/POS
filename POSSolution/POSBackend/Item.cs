@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace POSBackend
 {
@@ -11,32 +12,29 @@ namespace POSBackend
         private int sku;
         private string type;
         private string department;
-        private float price;
-        private int orderMoreLevel;
         private double AvgPerDay;
         private List<Retailer> retailerList = new List<Retailer>();
+        private int count;
+        private DateTime addedDate;
+        private int totalSold = 0;
 
+        public int Count { get { return count; } set { count += value; } }
+        public float Price { get; set; }
+        public bool ShouldOrderMore { get { return count < OrderMoreLevel; } }
+        public int SKU { get { return sku; } }
+        public int OrderMoreLevel { get;  set; }
 
-        public Item(string name, int sku, string department, string type, int orderMoreLevel, float price)
+        public Item(string newName, int newSku, string newDepartment, string newType, int newOrderMoreLevel, float newPrice)
         {
-            this.name = name;
-            this.sku = sku;
-            this.department = department;
-            this.type = type;
-            this.orderMoreLevel = orderMoreLevel;
-            this.price = price;
+            name = newName;
+            sku = newSku;
+            department = newDepartment;
+            type = newType;
+            OrderMoreLevel = newOrderMoreLevel;
+            Price = newPrice;
 
         }
-
-        public float Price()
-        {
-            return price;
-        }
-
-        public int SKU()
-        {
-            return sku;
-        }
+        
 
         public bool AddRetailer(Retailer newRetailer)
         {
@@ -75,15 +73,15 @@ namespace POSBackend
 
 
 
-        public void UpdateCount(int newCount)
-        {
-            count = newCount;
-        }
+        //public void UpdateCount(int newCount)
+        //{
+        //    count += newCount;
+        //}
 
-        public void UpdateOrderLevel(int newLevel)
-        {
-            orderMoreLevel = newLevel;
-        }
+        //public void UpdateOrderLevel(int newLevel)
+        //{
+        //    orderMoreLevel = newLevel;
+        //}
 
         public override bool Equals(object obj)
         {

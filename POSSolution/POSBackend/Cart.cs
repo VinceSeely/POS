@@ -12,7 +12,7 @@ namespace POSBackend
     class Cart
     {
         
-        private List<ItemQuantityPair> items;
+        private List<Item> _Items;
         private Guid userID;
         private List<Coupon> coupons;
         private float total = 0;
@@ -42,17 +42,16 @@ namespace POSBackend
         {
             //find the index of the item in the cart if available
             //int index = lookFor(item.SKU());
-            int index = items.IndexOf(new ItemQuantityPair(item, 0));
+            int index = _Items.IndexOf(item);
 
             //if the one of the item is in the cart update the quantity
             if (index != -1)
-                items[index].quantity += num;
+                _Items[index].Count = num;
 
             //otherwise add an instance of that item to the cart with the quantity
             else
             {
-                ItemQuantityPair newPair = new ItemQuantityPair(item, num);
-                items.Add(newPair);
+                _Items.Add(item);
             }
 
             runningTotal();
@@ -67,15 +66,15 @@ namespace POSBackend
         {
             //find the index of the item in the cart
             //int index = lookFor(sku);
-            int index = items.IndexOf(new ItemQuantityPair(item, 0));
+            int index = _Items.IndexOf(item);
 
             //if user is removing all of the item remove it from the list
-            if (num >= items[index].quantity)
-                items.Remove(items[index]);
+            if (num >= _Items[index].Count)
+                _Items.RemoveAt(index);
             
             //if user is not removing all of the item update the quantity
             else
-                items[index].quantity -= num;
+                _Items[index].Count = -num;
 
             runningTotal();
         }
@@ -96,8 +95,8 @@ namespace POSBackend
         private void runningTotal()
         {
             // Add the price of all items
-            foreach (ItemQuantityPair subject in items)
-                total += (subject.item.Price() * subject.quantity);
+            foreach (var subject in _Items)
+                total += (subject.Price * subject.Count);
 
             // Subtract the discounts from all coupons
             foreach (Coupon cou in coupons)

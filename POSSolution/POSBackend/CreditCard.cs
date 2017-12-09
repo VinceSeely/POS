@@ -96,5 +96,13 @@ namespace POSBackend
         {
             return validate(code);
         }
+
+        public override bool Equals(object obj)
+        {
+            var creditCard = obj as CreditCard;
+            if (creditCard == null)
+                return false;
+            return (creditCard.CardNumber.Equals(CardNumber) && creditCard.CVV == CVV);
+        }
     }
 }

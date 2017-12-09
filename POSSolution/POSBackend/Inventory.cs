@@ -8,15 +8,27 @@ namespace POSBackend
 {
     class Inventory
     {
-        private List<ItemQuantityPair> inventory;
-        private List<Coupon> couponList;
+        private Inventory _inventoryInstance;
+        private List<Item> inventory;
+        //private List<Coupon> couponList;
+        public Inventory InventoryInstance { get
+            {
+                _inventoryInstance = _inventoryInstance ?? new Inventory();
+                return _inventoryInstance;
+            } }
 
+        private Inventory()
+        {
+
+        }
         /**
          * Searches for the item in the list 
          */
         private Item search(Item item)
         {
-            return inventory.
+            var temp  = inventory.Where(p => p.ShouldOrderMore ).OrderBy(x => x.Count).ToList();
+            temp.Reverse();
+            return inventory.FirstOrDefault(listItem => listItem.Equals(item));
         }
 
         /**
