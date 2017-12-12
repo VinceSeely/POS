@@ -1,7 +1,21 @@
 ﻿@{
-   ViewData["Title"] = "Profile";
+   ViewData["Title"] = "Account";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Profile info goes here</p>
+<h3 onclick="expand('CreditCard')">Credit Card</h3>
+<div id="CreditCard" style="display: none">
+   <p >*****************1234</p>
+   <p>&spades; address</p>
+</div>
+<h3 onclick="expand('Address')">Address</h3>
+<div id="Address" style="display: none">
+   <p>9311 139th ct NE</p>
+   <p>Redmond WA, 98052</p>
+</div>
+<h3 onclick="expand('email')">E-mail</h3>
+<div id="email" style="display: none">
+   <p>Primary: </p>
+   <p>Recovery: </p>
+</div>

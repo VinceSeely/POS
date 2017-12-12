@@ -1,4 +1,10 @@
-﻿function ViewProfile() {
+﻿function ProfileViewModel() {
+   // Data
+   var self = this;
+   self.tabs = ['Credit Cards', 'Shipping Addresses', 'Email Addresses'];
+};
+
+function ViewProfile() {
    var indexOfDir = window.location.href.indexOf("/", 7);
    var subString = window.location.href.substr(indexOfDir)
    var queryLocation = "";
@@ -14,3 +20,5 @@
       }
    });
 }
+
+ko.applyBindings(new ProfileViewModel());
