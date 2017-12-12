@@ -61,6 +61,7 @@ namespace POSBackend
 
             return successful;
         }
+
         public bool ChangeLastName(string username, string password, string LastName)
         {
             bool successful = false;
@@ -176,7 +177,7 @@ namespace POSBackend
             throw new NotImplementedException();
         }
 
-        public User Login(string username, string password)
+      public User Login(string username, string password)
         {
             User tempUser = new User("", "", username, "", "", null);
             int indexofUser = userList.IndexOf(tempUser);

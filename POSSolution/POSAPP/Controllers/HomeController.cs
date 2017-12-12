@@ -20,6 +20,7 @@ namespace POSAPP.Controllers
       public IActionResult Search(string searchTerm)
       {
          ViewData["Message"] = $"Results for {searchTerm}";
+         Inventory.InventoryInstance.search(searchTerm);
          
          return View();
       }
@@ -29,7 +30,7 @@ namespace POSAPP.Controllers
          ViewData["Message"] = "Your Current Cart";
          //.ACMInstance;
          //var temp1 = new AccountManager();
-         var temp = AccountManager.ACMInstance;
+         //var temp = AccountManager.ACMInstance.Login("admin","bullshit");
          return View();
       }
 
@@ -51,5 +52,6 @@ namespace POSAPP.Controllers
       {
          return View();
       }
+
    }
 }
