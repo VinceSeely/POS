@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POSBackend
 {
-    class User
+    public class User
     {
         //private List<User> allUsers = new List<User>();
         //private string firstName;

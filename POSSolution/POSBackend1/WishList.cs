@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POSBackend
 {
-    class WishList
+    public class WishList
     {
         private List<Item> itemList = new List<Item>();
 

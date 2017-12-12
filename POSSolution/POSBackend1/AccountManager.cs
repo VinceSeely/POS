@@ -8,7 +8,7 @@ using POSBackend;
 
 namespace POSBackend
 {
-    class AccountManager
+    public class AccountManager
     {
         private List<User> userList = new List<User>(); 
         private AccountManager _acminstance;

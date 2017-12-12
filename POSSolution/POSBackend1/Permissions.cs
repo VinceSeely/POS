@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POSBackend
 {
-    class Permissions
+    public class Permissions
     {
         public bool CanViewInventory{ get; set; }
         public bool CanUpdateInventory { get; set; }

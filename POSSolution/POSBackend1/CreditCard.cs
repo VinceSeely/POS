@@ -11,7 +11,7 @@ namespace POSBackend
         public int month { get; set; }
         public int year { get; set; }
     }
-    class CreditCard
+    public class CreditCard
     {
         private String CardNumber;
         private enum CardTypes {EXPRESS=3,VISA=4,MASTER=5,DISCOVER=6};
