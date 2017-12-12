@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-//using POS
+﻿using Microsoft.AspNetCore.Mvc;
+using POSBackend;
 
 namespace POSAPP.Controllers
 {
@@ -24,14 +20,16 @@ namespace POSAPP.Controllers
       public IActionResult Search(string searchTerm)
       {
          ViewData["Message"] = $"Results for {searchTerm}";
-
+         
          return View();
       }
 
       public IActionResult Cart()
       {
          ViewData["Message"] = "Your Current Cart";
-         //AccountManger.ACMInstance;
+         //.ACMInstance;
+         //var temp1 = new AccountManager();
+         var temp = AccountManager.ACMInstance;
          return View();
       }
 

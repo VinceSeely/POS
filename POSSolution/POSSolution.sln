@@ -4,10 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "POSAPP", "POSAPP\POSAPP.xproj", "{AC5F0D9A-D9A4-4868-8B5E-101A26FD12B8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{58B73950-87DA-4A41-85F3-7FACFDE772DC} = {58B73950-87DA-4A41-85F3-7FACFDE772DC}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POSUnitTest", "POSUnitTest\POSUnitTest.csproj", "{C48561AF-1DB2-4A84-9352-7B9E4CDB8C29}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "POSBackend", "POSBackend1\POSBackend.xproj", "{58B73950-87DA-4A41-85F3-7FACFDE772DC}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "POSBackend1", "POSBackend1\POSBackend1.xproj", "{58B73950-87DA-4A41-85F3-7FACFDE772DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

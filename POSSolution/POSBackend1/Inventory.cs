@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace POSBackend
 {
-    class Inventory
+    public class Inventory
     {
-        private Inventory _inventoryInstance;
-        private List<Item> inventory;
+        private static Inventory _inventoryInstance;
+        private  List<Item> inventory;
         //private List<Coupon> couponList;
-        public Inventory InventoryInstance { get
+        public static Inventory InventoryInstance { get
             {
                 _inventoryInstance = _inventoryInstance ?? new Inventory();
                 return _inventoryInstance;

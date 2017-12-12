@@ -11,8 +11,8 @@ namespace POSBackend
     public class AccountManager
     {
         private List<User> userList = new List<User>(); 
-        private AccountManager _acminstance;
-        public  AccountManager  ACMInstance
+        private static AccountManager _acminstance;
+        public static  AccountManager  ACMInstance
         {
             get
             {
