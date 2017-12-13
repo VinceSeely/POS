@@ -1,7 +1,7 @@
-Fancy_Cup,1,9.99,Kitchen,Cup,10,17
-To_Kill_Book,2,29.95,Books,Book,10,3
-Holy_Grail,3,999.99,Kitchen,Cup,0,1
-Don_Julio,4,50.65,Drinks,Cup,400,5
-Sketchers,5,25.99,Clothing,Shoe,30,24
-Boomerang,6,19.95,Toys,Weapon,7,1000
-Ye_Ol'_Faithful,7,5.15,Toys,Weapon,4,15936
+Fancy Cup,1,9.99,Kitchen,Cup,10,17,300,300
+To Kill Book,2,29.95,Books,Book,10,3,300,300
+Holy Grail,3,999.99,Kitchen,Cup,0,1,300,427
+Don Julio,4,50.65,Drinks,Cup,400,5,300,383
+Sketchers,5,25.99,Clothing,Shoe,30,24,300,169
+Boomerang,6,19.95,Toys,Weapon,7,1000,300,123
+Ye Ol Faithful,7,5.15,Toys,Weapon,4,15936,300,300

@@ -27,7 +27,7 @@ namespace POSBackend
          var itemLines = File.ReadLines($"{dir}\\Items.csv");//.Split(';');//.Select(a => a.Split(';'));
          inventory = (from line in itemLines
                       let item = line.Split(',')
-                      select new Item(item[0], int.Parse(item[1]), item[3], item[4], int.Parse(item[5]), float.Parse(item[2]), int.Parse(item[6]), $"{Directory.GetCurrentDirectory()}\\{item[0]}.jpg")).ToList();
+                      select new Item(item[0], int.Parse(item[1]), item[3], item[4], int.Parse(item[5]), float.Parse(item[2]), int.Parse(item[6]), $"{Directory.GetCurrentDirectory()}\\wwwroot\\images\\{item[0]}.jpg", int.Parse(item[7]), int.Parse(item[8]))).ToList();
       }
       /**
        * Searches for the item in the list 
@@ -35,8 +35,6 @@ namespace POSBackend
       public List<Item> search(string searchTerm)
       {
          if (searchTerm == null)
-            return new List<Item>();
-         if (searchTerm.ToLower() == "all")
             return Inventory.InventoryInstance.inventory;
          var temp = inventory.Where(p => !p.ShouldOrderMore).OrderBy(x => x.Count).ToList();
          temp.Reverse();

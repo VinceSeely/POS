@@ -19,6 +19,7 @@ namespace POSBackend
       private DateTime addedDate;
       private int totalSold = 0;
       private string imageFile;
+      private int imageWidth, imageHeight;
 
       public string Department { get { return department; } }
       public string Name { get { return name; } }
@@ -29,8 +30,10 @@ namespace POSBackend
       public int SKU { get { return sku; } }
       public int OrderMoreLevel { get; set; }
       public string ImageFile { get { return imageFile; } }
+      public int ImageWidth { get { return imageWidth; } }
+      public int ImageHeight { get { return imageHeight; } }
 
-      public Item(string newName, int newSku, string newDepartment, string newType, int newOrderMoreLevel, float newPrice, int newCount, string newImagePath)
+      public Item(string newName, int newSku, string newDepartment, string newType, int newOrderMoreLevel, float newPrice, int newCount, string newImagePath, int newImageWidth, int newImageHeight)
       {
          name = newName;
          sku = newSku;
@@ -43,6 +46,8 @@ namespace POSBackend
          Byte[] bytes = File.ReadAllBytes(newImagePath);
          string image = Convert.ToBase64String(bytes);
          imageFile = image;
+         imageWidth = newImageWidth;
+         imageHeight = newImageHeight;
       }
 
 

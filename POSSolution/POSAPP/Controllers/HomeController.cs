@@ -7,6 +7,7 @@ namespace POSAPP.Controllers
    {
       public IActionResult Index()
       {
+         loadData("home");
          return View();
       }
 
@@ -19,7 +20,8 @@ namespace POSAPP.Controllers
 
       public IActionResult Search(string searchTerm)
       {
-         ViewData["Message"] = $"{searchTerm}";
+         loadData($"Search Results For {searchTerm}");
+         //ViewData["Message"] = $"{searchTerm}";
          var results = Inventory.InventoryInstance.search(searchTerm);
          ViewBag.SearchList = results;
 
@@ -28,7 +30,7 @@ namespace POSAPP.Controllers
 
       public IActionResult Cart()
       {
-         ViewData["Message"] = "Your Current Cart";
+         loadData("Your Cart", "LoggedIn");
          //.ACMInstance;
          //var temp1 = new AccountManager();
          //var temp = AccountManager.ACMInstance.Login("admin","bullshit");
@@ -37,13 +39,15 @@ namespace POSAPP.Controllers
 
       public IActionResult Profile()
       {
-         ViewData["Message"] = "Username is here";
+         loadData("Profile", "LoggedIn");
+
 
          return View();
       }
 
       public IActionResult Orders()
       {
+         loadData("Orders", "d");
          ViewData["Message"] = "Recent Orders:";
 
          return View();
@@ -56,6 +60,38 @@ namespace POSAPP.Controllers
          ViewBag.Item = results[0];
          ViewData["Title"] = item;
 
+         return View();
+      }
+
+      private void loadData(string title, string loginVal = "", string username = "")
+      {
+         ViewData["Title"] = title;
+
+         if (loginVal == "")
+         {
+            ViewData["loginLink"] = "/Home/LogIn";
+            ViewData["LoginValue"] = "Login";
+            ViewData["ProfileLink"] = "/Home/LogIn";
+            ViewData["OrdersLink"] = "/Home/LogIn";
+            ViewData["CartLink"] = "/Home/LogIn";
+         }
+         else
+         {
+            ViewData["loginLink"] = "/Home/Logout";
+            ViewData["LoginValue"] = "Logout";
+            ViewData["ProfileLink"] = "/Home/Profile";
+            ViewData["OrdersLink"] = "/Home/Orders";
+            ViewData["CartLink"] = "/Home/Cart";
+         }
+
+
+
+
+      }
+
+      public IActionResult LogIn()
+      {
+         loadData("login");
          return View();
       }
 

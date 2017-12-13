@@ -48,11 +48,11 @@
             <button id="SearchButton" onclick="Search()">&#128270;</button>
                <button data-toggle="dropdown" class="dropdown-toggle pull-right">Options<span class="caret"></span></button>
                <ul id="profile" class="dropdown-menu pull-right">
-                  <li><a onclick="ViewProfile()">Profile</a></li>
-                  <li><a onclick="ViewOrders()">Orders</a></li>
-                  <li><a>Logout</a></li>
+                  <li><a href="@ViewData["loginLink"]" >@ViewData["LoginValue"]</a></li>
+                   <li><a href="@ViewData["ProfileLink"]">Profile</a></li>
+                  <li><a href="@ViewData["OrdersLink"]">Orders</a></li>
                </ul>
-            <button id="ViewCartButton"class="pull-right" onclick="ViewCart()">&#128722;</button>
+            <a href="@ViewData["CartLink"]"><button id="ViewCartButton" class="pull-right">&#128722;</button></a>
          </div>
       </div>
       @RenderBody()
@@ -72,6 +72,7 @@
       <script src="~/js/ProfileAction.js"></script>
       <script src="~/js/OrdersAction.js"></script>
       <script src="~/js/ItemPage.js"></script>
+      <script src="~/js/LogIn.js"></script>
    </environment>
    <environment names="Staging,Production">
       <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

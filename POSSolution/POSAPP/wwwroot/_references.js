@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="js/itempage.js" />
 /// <reference path="js/knockout.js" />
+/// <reference path="js/login.js" />
 /// <reference path="js/ordersaction.js" />
 /// <reference path="js/profileaction.js" />
 /// <reference path="js/searchaction.js" />

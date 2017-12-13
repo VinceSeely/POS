@@ -1,16 +1,17 @@
-﻿function ViewProfile() {
+﻿function LogIn() {
    var indexOfDir = window.location.href.indexOf("/", 7);
    var subString = window.location.href.substr(indexOfDir)
    var queryLocation = "";
    if (subString.startsWith("/Home"))
-      queryLocation = "Profile";
+      queryLocation = "LogIn";
    else
-      queryLocation = "Home/Profile";
+      queryLocation = "Home/LogIn";
    $.ajax({
       url: queryLocation,
       success: function (data) {
          //alert("success");
          window.location.href = queryLocation;
+
       }
    });
 }
