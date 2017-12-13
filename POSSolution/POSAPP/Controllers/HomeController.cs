@@ -76,6 +76,24 @@ namespace POSAPP.Controllers
          return AccountManager.ACMInstance.Login(username, password);
       }
 
+      public bool RegisterUser(string first, string last, string username, string password, string newPhoneNumber, string address, string state, string country, string city, string zipcode)
+      {
+         Address tempAddress = new Address
+         {
+            streetAddress = address ?? "",
+            state = state ?? "",
+            country = country ?? "",
+            city = city ?? "",
+            zipCode = zipcode != null ? int.Parse(zipcode) : 0
+         };
+         return AccountManager.ACMInstance.CreateAccount(username, first, last, password, newPhoneNumber, tempAddress);
+      }
+
+      public bool IsUsernameAvailable(string username)
+      {
+         return AccountManager.ACMInstance.IsUsernameAvailable(username);
+      }
+
       private void loadData(string title, string loginVal = "", string username = "")
       {
          ViewData["Title"] = title;

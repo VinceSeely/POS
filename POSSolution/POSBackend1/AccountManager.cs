@@ -213,5 +213,13 @@ namespace POSBackend
          }
          return false;
       }
+
+      public bool IsUsernameAvailable(string username)
+      {
+         User foundUser = userList.Where(p => p.Username == username).FirstOrDefault();
+         if (foundUser == null)
+            return true;
+         return false;
+      }
    }
 }
