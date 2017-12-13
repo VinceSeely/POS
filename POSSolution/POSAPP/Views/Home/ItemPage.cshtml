@@ -1,3 +1,15 @@
 ﻿<h2>@ViewData["Title"]</h2>
+<div class="col-lg-3">
+   <img width="@ViewBag.Item.ImageWidth" height="@ViewBag.Item.ImageHeight" src="data:image/jpeg;base64,@ViewBag.Item.ImageFile" />
+</div>
 
+<div class="row">
+   <div class="col-lg-3">
+      <p>@ViewBag.Item.Name</p>
+   </div>
+   <div class="col-lg-3">
+      <button id="AddToCart">Add To Cart</button>
+   </div>
+   
+</div>
 

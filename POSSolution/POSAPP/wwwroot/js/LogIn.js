@@ -5,6 +5,12 @@
    $.ajax({
       url: "/Home/SetUser",
       async: false,
-      data: { 'username': username, 'password': password }
+      data: { 'username': username, 'password': password },
+      success: function (data) {
+         if (data)
+            location.href = "Search?searchTerm=";
+         else
+            alert("Username or password is incorrect. Try again");
+      }
    });
 }

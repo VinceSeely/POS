@@ -102,7 +102,8 @@ namespace POSAPP.Controllers
 
       public IActionResult LogIn()
       {
-         if(AccountManager.ACMInstance.GetCurrentUser() != null)
+         if (AccountManager.ACMInstance.GetCurrentUser() != null)
+            AccountManager.ACMInstance.LogOut();
          loadData("login");
          return View();
       }

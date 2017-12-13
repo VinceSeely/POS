@@ -200,7 +200,7 @@ namespace POSBackend
 
       public void LogOut()
       {
-
+         currentUser = null;
       }
 
       public bool UpdatePersmisions(string username, string newPermsion)

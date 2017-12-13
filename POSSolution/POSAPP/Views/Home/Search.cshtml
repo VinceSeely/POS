@@ -7,14 +7,14 @@
 
 @foreach (var item in ViewBag.SearchList)
 {
-   <div class="row nav-tabs">
+   <div class="row nav-tabs" onclick="ViewItem(@item.SKU)">
       <div class="col-sm-4">
          <p> </p>
          <img width="@item.ImageWidth" height="@item.ImageHeight" src="data:image/jpeg;base64,@item.ImageFile" />
          <p> </p>
       </div>
       <div class="col-sm-4">
-         <h3 style="font-size: 20px" onclick="ViewItem(@item.SKU)"><b>@item.Name</b></h3>
+         <h3 style="font-size: 20px"><b>@item.Name</b></h3>
          <p>Price: $@item.Price</p>
          <p>SKU Number: @item.SKU</p>
          <p>Quantity Available: @item.Count</p>
