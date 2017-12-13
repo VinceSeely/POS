@@ -1,2 +1,13 @@
 ﻿<h2>@ViewData["Title"]</h2>
 
+<div class="row">
+   <input id="Username" type="text" placeholder="Username" />
+
+   <input id="Password" type="password" placeholder="Password" />
+   <button id="LogInButton" onclick="SetCurrentUser()">Log In</button>
+</div>
+<div class="row">
+   <a href="@ViewData["RegisterLink"]" style="color: #000000"> <button id="Register" >Register</button></a>
+</div>
+
+

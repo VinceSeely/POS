@@ -50,7 +50,7 @@ namespace POSBackend
             var user = obj as User;
             if (user == null)
                 return false;
-            return Username.Equals(user.Username);
+            return (Username.Equals(user.Username) && this.ComparePassword(user.Password));
         }
 
         public void AddCreditCard(CreditCard newCard)

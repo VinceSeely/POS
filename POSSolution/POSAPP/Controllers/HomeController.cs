@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using POSBackend;
+using System.Collections.Generic;
 
 namespace POSAPP.Controllers
 {
@@ -47,7 +48,7 @@ namespace POSAPP.Controllers
 
       public IActionResult Orders()
       {
-         loadData("Orders", "d");
+         loadData("Orders", "LoggedIn");
          ViewData["Message"] = "Recent Orders:";
 
          return View();
@@ -63,11 +64,23 @@ namespace POSAPP.Controllers
          return View();
       }
 
+      public IActionResult Register()
+      {
+         ViewData["Title"] = "Register";
+
+         return View();
+      }
+
+      public bool SetUser(string username, string password)
+      {
+         return AccountManager.ACMInstance.Login(username, password);
+      }
+
       private void loadData(string title, string loginVal = "", string username = "")
       {
          ViewData["Title"] = title;
 
-         if (loginVal == "")
+         if (AccountManager.ACMInstance.GetCurrentUser() == null)
          {
             ViewData["loginLink"] = "/Home/LogIn";
             ViewData["LoginValue"] = "Login";
@@ -77,20 +90,19 @@ namespace POSAPP.Controllers
          }
          else
          {
-            ViewData["loginLink"] = "/Home/Logout";
+            ViewData["loginLink"] = "/Home/LogIn";
             ViewData["LoginValue"] = "Logout";
             ViewData["ProfileLink"] = "/Home/Profile";
             ViewData["OrdersLink"] = "/Home/Orders";
             ViewData["CartLink"] = "/Home/Cart";
          }
-
-
-
-
+         ViewData["RegisterLink"] = "/Home/Register";
+         ViewData["HomeLink"] = "/Home";
       }
 
       public IActionResult LogIn()
       {
+         if(AccountManager.ACMInstance.GetCurrentUser() != null)
          loadData("login");
          return View();
       }
