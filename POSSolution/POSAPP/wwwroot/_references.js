@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/itempage.js" />
 /// <reference path="js/knockout.js" />
 /// <reference path="js/ordersaction.js" />
 /// <reference path="js/profileaction.js" />

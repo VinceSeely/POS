@@ -34,9 +34,13 @@ namespace POSBackend
        */
       public List<Item> search(string searchTerm)
       {
+         if (searchTerm == null)
+            return new List<Item>();
+         if (searchTerm.ToLower() == "all")
+            return Inventory.InventoryInstance.inventory;
          var temp = inventory.Where(p => !p.ShouldOrderMore).OrderBy(x => x.Count).ToList();
          temp.Reverse();
-         var items = inventory.Where(p => p.Name.Contains(searchTerm) || p.SearchTerm.Contains(searchTerm) || searchTerm.Contains(p.SearchTerm) || searchTerm.Contains(p.Name) || p.SKU.ToString().StartsWith(searchTerm) || p.Department.Contains(searchTerm)).ToList();
+         var items = inventory.Where(p => p.Name.ToLower().Contains(searchTerm.ToLower()) || p.SearchTerm.ToLower().Contains(searchTerm.ToLower()) || searchTerm.ToLower().Contains(p.SearchTerm.ToLower()) || searchTerm.ToLower().Contains(p.Name.ToLower()) || p.SKU.ToString().StartsWith(searchTerm) || p.Department.ToLower().Contains(searchTerm.ToLower())).ToList();
          return items;
       }
 

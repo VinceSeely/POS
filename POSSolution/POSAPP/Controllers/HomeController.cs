@@ -19,7 +19,7 @@ namespace POSAPP.Controllers
 
       public IActionResult Search(string searchTerm)
       {
-         ViewData["Message"] = $"Results for {searchTerm}";
+         ViewData["Message"] = $"{searchTerm}";
          var results = Inventory.InventoryInstance.search(searchTerm);
          ViewBag.SearchList = results;
 
@@ -45,6 +45,16 @@ namespace POSAPP.Controllers
       public IActionResult Orders()
       {
          ViewData["Message"] = "Recent Orders:";
+
+         return View();
+      }
+
+      public IActionResult ItemPage(int sku)
+      {
+         var results = Inventory.InventoryInstance.search(sku.ToString());
+         var item = results[0].Name;
+         ViewBag.Item = results[0];
+         ViewData["Title"] = item;
 
          return View();
       }
