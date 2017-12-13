@@ -9,24 +9,24 @@ namespace POSBackend
     /// <summary>
     /// Pairing of an item and the quantity of that item 
     /// </summary>
-    public class ItemQuantityPair
+    public class SkuQuantityPair
     {
-        public ItemQuantityPair(Item newItem, int newQuantity)
+        public SkuQuantityPair(int newSKU, int newQuantity)
         {
-            item = newItem;
-            quantity = newQuantity;
+            SKU = newSKU;
+            Quantity = newQuantity;
         }
 
-        public Item item { get; set; }
+        public int SKU { get; set; }
 
-        public int quantity { get; set; }
+        public int Quantity { get; set; }
 
         public override bool Equals(object obj)
         {
-            var realObject = obj as ItemQuantityPair;
+            var realObject = obj as SkuQuantityPair;
             if (realObject == null)
                 return false;
-            return item.Equals(realObject.item);
+            return SKU.Equals(realObject.SKU );
         }
     }
 }

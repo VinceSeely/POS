@@ -12,7 +12,7 @@ namespace POSBackend
     class Cart
     {
         
-        private List<Item> _Items;
+        private List<SkuQuantityPair> _Items;
         private Guid userID;
         private List<Coupon> coupons;
         private float total = 0;
@@ -38,7 +38,7 @@ namespace POSBackend
         /// </summary>
         /// <param name="item">item to be added to the cart</param>
         /// <param name="num">quantity of item to be added</param>
-        public void addItem(Item item, int num)
+        public void addItem(int sku, int num)
         {
             //find the index of the item in the cart if available
             //int index = lookFor(item.SKU());
