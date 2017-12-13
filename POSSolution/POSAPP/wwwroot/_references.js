@@ -4,6 +4,7 @@
 /// <reference path="js/login.js" />
 /// <reference path="js/ordersaction.js" />
 /// <reference path="js/profileaction.js" />
+/// <reference path="js/registration.js" />
 /// <reference path="js/searchaction.js" />
 /// <reference path="js/site.js" />
 /// <reference path="js/viewcartaction.js" />

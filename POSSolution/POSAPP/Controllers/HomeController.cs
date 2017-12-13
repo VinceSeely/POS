@@ -59,7 +59,7 @@ namespace POSAPP.Controllers
          var results = Inventory.InventoryInstance.search(sku.ToString());
          var item = results[0].Name;
          ViewBag.Item = results[0];
-         ViewData["Title"] = item;
+         loadData(item);
 
          return View();
       }
