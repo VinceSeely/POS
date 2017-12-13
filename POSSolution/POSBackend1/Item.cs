@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace POSBackend
 {
@@ -17,7 +18,9 @@ namespace POSBackend
       private int count;
       private DateTime addedDate;
       private int totalSold = 0;
+      private string imageFile;
 
+      public string Department { get { return department; } }
       public string Name { get { return name; } }
       public string SearchTerm { get { return searchTerm; } }
       public int Count { get { return count; } set { count += value; } }
@@ -25,8 +28,9 @@ namespace POSBackend
       public bool ShouldOrderMore { get { return count < OrderMoreLevel; } }
       public int SKU { get { return sku; } }
       public int OrderMoreLevel { get; set; }
+      public string ImageFile { get { return imageFile; } }
 
-      public Item(string newName, int newSku, string newDepartment, string newType, int newOrderMoreLevel, float newPrice, int newCount)
+      public Item(string newName, int newSku, string newDepartment, string newType, int newOrderMoreLevel, float newPrice, int newCount, string newImagePath)
       {
          name = newName;
          sku = newSku;
@@ -36,6 +40,9 @@ namespace POSBackend
          Price = newPrice;
          count = newCount;
          addedDate = DateTime.Now;
+         Byte[] bytes = File.ReadAllBytes(newImagePath);
+         string image = Convert.ToBase64String(bytes);
+         imageFile = image;
       }
 
 

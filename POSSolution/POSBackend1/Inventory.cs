@@ -23,19 +23,21 @@ namespace POSBackend
 
       private Inventory()
       {
-         var itemLines = File.ReadLines($"{Directory.GetCurrentDirectory()}\\Items.csv");//.Split(';');//.Select(a => a.Split(';'));
+         var dir = Directory.GetCurrentDirectory();
+         var itemLines = File.ReadLines($"{dir}\\Items.csv");//.Split(';');//.Select(a => a.Split(';'));
          inventory = (from line in itemLines
                       let item = line.Split(',')
-                      select new Item(item[0], int.Parse(item[1]), item[3], item[4], int.Parse(item[5]), float.Parse(item[2]), int.Parse(item[6]))).ToList();
+                      select new Item(item[0], int.Parse(item[1]), item[3], item[4], int.Parse(item[5]), float.Parse(item[2]), int.Parse(item[6]), $"{Directory.GetCurrentDirectory()}\\{item[0]}.jpg")).ToList();
       }
       /**
        * Searches for the item in the list 
        */
       public List<Item> search(string searchTerm)
       {
-         var temp = inventory.Where(p => p.ShouldOrderMore).OrderBy(x => x.Count).ToList();
+         var temp = inventory.Where(p => !p.ShouldOrderMore).OrderBy(x => x.Count).ToList();
          temp.Reverse();
-         return inventory.Where(p => p.Name.Contains(searchTerm) || p.SearchTerm.Contains(searchTerm) || searchTerm.Contains(p.SearchTerm)|| searchTerm.Contains(p.Name) || p.SKU.ToString().StartsWith(searchTerm)).ToList();
+         var items = inventory.Where(p => p.Name.Contains(searchTerm) || p.SearchTerm.Contains(searchTerm) || searchTerm.Contains(p.SearchTerm) || searchTerm.Contains(p.Name) || p.SKU.ToString().StartsWith(searchTerm) || p.Department.Contains(searchTerm)).ToList();
+         return items;
       }
 
       /**

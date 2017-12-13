@@ -20,8 +20,9 @@ namespace POSAPP.Controllers
       public IActionResult Search(string searchTerm)
       {
          ViewData["Message"] = $"Results for {searchTerm}";
-         Inventory.InventoryInstance.search(searchTerm);
-         
+         var results = Inventory.InventoryInstance.search(searchTerm);
+         ViewBag.SearchList = results;
+
          return View();
       }
 
