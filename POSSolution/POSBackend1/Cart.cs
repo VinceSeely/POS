@@ -12,41 +12,26 @@ namespace POSBackend
     class Cart
     {
         
-        private List<Item> _Items;
+        private List<SkuQuantityPair> _Items;
         private Guid userID;
         private List<Coupon> coupons;
         private float total = 0;
 
-        ///// <summary>
-        ///// returns the index of the item in the cart or -1 if not found
-        ///// </summary>
-        ///// <param name="sku"></param>
-        ///// <returns></returns>
-        //private int lookFor(int sku)
-        //{
-        //    foreach (ItemQuantityPair subject in items)
-        //    {
-        //        if (subject.item.SKU() == sku)
-        //            return items.IndexOf(subject);
-        //    }
-
-        //    return -1;
-        //}
-
         /// <summary>
         /// Adds num of item to the cart
         /// </summary>
-        /// <param name="item">item to be added to the cart</param>
+        /// <param name="sku">sku to be added to the cart</param>
         /// <param name="num">quantity of item to be added</param>
-        public void addItem(Item item, int num)
+        public void addItem(int sku, int num)
         {
+            SkuQuantityPair item = new SkuQuantityPair(sku, num);
+
             //find the index of the item in the cart if available
-            //int index = lookFor(item.SKU());
             int index = _Items.IndexOf(item);
 
             //if the one of the item is in the cart update the quantity
             if (index != -1)
-                _Items[index].Count = num;
+                _Items[index].Quantity = num;
 
             //otherwise add an instance of that item to the cart with the quantity
             else
@@ -60,21 +45,23 @@ namespace POSBackend
         /// <summary>
         /// Removes num of the given item from the cart
         /// </summary>
-        /// <param name="item">item to be removed</param>
+        /// <param name="sku">sku to be removed</param>
         /// <param name="num">number of specified number to be removed</param>
-        public void removeItem(Item item, int num)
+        public void removeItem(int sku, int num)
         {
+            SkuQuantityPair item = new SkuQuantityPair(sku, num);
+
             //find the index of the item in the cart
             //int index = lookFor(sku);
             int index = _Items.IndexOf(item);
 
             //if user is removing all of the item remove it from the list
-            if (num >= _Items[index].Count)
+            if (num >= _Items[index].Quantity)
                 _Items.RemoveAt(index);
             
             //if user is not removing all of the item update the quantity
             else
-                _Items[index].Count = -num;
+                _Items[index].Quantity = -num;
 
             runningTotal();
         }
@@ -96,7 +83,10 @@ namespace POSBackend
         {
             // Add the price of all items
             foreach (var subject in _Items)
-                total += (subject.Price * subject.Count);
+            {
+                var item = Inventory.InventoryInstance.GetItem(subject.SKU);
+                total += (item.Price * subject.Quantity);
+            }
 
             // Subtract the discounts from all coupons
             foreach (Coupon cou in coupons)

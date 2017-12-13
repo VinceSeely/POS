@@ -57,5 +57,10 @@ namespace POSBackend
          else
             inventory.Add(item);
       }
-   }
+
+        public Item GetItem(int SKU)
+        {
+            return inventory.FirstOrDefault(p => p.SKU == SKU);
+        }
+    }
 }
