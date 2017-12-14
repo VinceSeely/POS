@@ -24,7 +24,7 @@ namespace POSBackend
       public string Department { get { return department; } }
       public string Name { get { return name; } }
       public string SearchTerm { get { return searchTerm; } }
-      public int Count { get { return count; } set { count += value; } }
+      public int Count { get { return count; } }
       public float Price { get; set; }
       public bool ShouldOrderMore { get { return count < OrderMoreLevel; } }
       public int SKU { get { return sku; } }
@@ -36,6 +36,16 @@ namespace POSBackend
       public Item(int newSku)
       {
          sku = newSku;
+      }
+
+      public void AddInventory()
+      {
+         count++;
+      }
+
+      public void RemoveFromInventory(int amount)
+      {
+         count -= amount;
       }
 
       public Item(string newName, int newSku, string newDepartment, string newType, int newOrderMoreLevel, float newPrice, int newCount, string newImagePath, int newImageWidth, int newImageHeight)
@@ -54,7 +64,6 @@ namespace POSBackend
          imageWidth = newImageWidth;
          imageHeight = newImageHeight;
       }
-
 
       public bool AddRetailer(Retailer newRetailer)
       {

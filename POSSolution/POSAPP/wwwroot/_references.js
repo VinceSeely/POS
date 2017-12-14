@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="js/inventory.js" />
 /// <reference path="js/itempage.js" />
 /// <reference path="js/knockout.js" />
 /// <reference path="js/login.js" />

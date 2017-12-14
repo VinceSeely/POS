@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using POSBackend;
 using System.Collections.Generic;
+using System;
 
 namespace POSAPP.Controllers
 {
@@ -19,15 +20,33 @@ namespace POSAPP.Controllers
          return View();
       }
 
+      public IActionResult Final()
+      {
+         return View();
+      }
+
       public bool AddToCart(int sku)
       {
          return AccountManager.ACMInstance.AddToCart(sku);
       }
 
-      public bool Checkout()
+      public char Checkout()
       {
+         
+         var cart = AccountManager.ACMInstance.GetCart();
          AccountManager.ACMInstance.Checkout();
-         return true;
+         if (cart.ContainsKey(Inventory.InventoryInstance.GetItem(8)))
+         {
+            return 'D';
+         }
+         
+         return 'T';
+      }
+
+      private void MicDrop()
+      {
+         Response.Redirect("/Home/Final");
+         
       }
 
       public IActionResult Search(string searchTerm)
@@ -103,6 +122,20 @@ namespace POSAPP.Controllers
          return AccountManager.ACMInstance.IsUsernameAvailable(username);
       }
 
+      public IActionResult InventoryPg()
+      {
+         loadData("Inventory");
+
+         ViewBag.Inventory = Inventory.InventoryInstance.GetInventory();
+
+         return View();
+      }
+
+      public void UpdateInventoryCount(int sku)
+      {
+         Inventory.InventoryInstance.AddExistingItem(sku);
+      }
+
       private void loadData(string title, string username = "")
       {
          ViewData["Title"] = title;
@@ -114,6 +147,7 @@ namespace POSAPP.Controllers
             ViewData["ProfileLink"] = "/Home/LogIn";
             ViewData["OrdersLink"] = "/Home/LogIn";
             ViewData["CartLink"] = "/Home/LogIn";
+            ViewData["InventoryLink"] = "/Home/LogIn";
          }
          else
          {
@@ -122,6 +156,7 @@ namespace POSAPP.Controllers
             ViewData["ProfileLink"] = "/Home/Profile";
             ViewData["OrdersLink"] = "/Home/Orders";
             ViewData["CartLink"] = "/Home/Cart";
+            ViewData["InventoryLink"] = "/Home/InventoryPg";
          }
          ViewData["RegisterLink"] = "/Home/Register";
          ViewData["HomeLink"] = "/Home";

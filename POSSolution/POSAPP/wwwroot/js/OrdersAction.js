@@ -20,9 +20,11 @@ function checkout()
    $.ajax({
       url: "/Home/Checkout",
       success: function (data) {
-         if (data)
+         if (data == 'T')
             alert("checked out");
-         window.location.reload();
+         else if (data == 'D')
+            location.href = "Final";
+        
       }
    });
 }

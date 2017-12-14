@@ -51,6 +51,7 @@
                   <li><a href="@ViewData["loginLink"]" >@ViewData["LoginValue"]</a></li>
                    <li><a href="@ViewData["ProfileLink"]">Profile</a></li>
                   <li><a href="@ViewData["OrdersLink"]">Orders</a></li>
+                  <li><a href="@ViewData["InventoryLink"]">Inventory</a></li>
                </ul>
             <a href="@ViewData["CartLink"]"><button id="ViewCartButton" class="pull-right">&#128722;</button></a>
          </div>
@@ -74,6 +75,7 @@
       <script src="~/js/ItemPage.js"></script>
       <script src="~/js/LogIn.js"></script>
       <script src="~/js/Registration.js"></script>
+      <script src="~/js/Inventory.js"></script>
    </environment>
    <environment names="Staging,Production">
       <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

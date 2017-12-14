@@ -36,7 +36,7 @@ namespace POSBackend
          {
             var item = new Item(itemskuQuantPair.Key);
             var index = inventory.IndexOf(item);
-            inventory.ElementAt(index).Count = -itemskuQuantPair.Value;
+            inventory.ElementAt(index).RemoveFromInventory(itemskuQuantPair.Value);
          }
       }
 
@@ -51,6 +51,11 @@ namespace POSBackend
          temp.Reverse();
          var items = inventory.Where(p => p.Name.ToLower().Contains(searchTerm.ToLower()) || p.SearchTerm.ToLower().Contains(searchTerm.ToLower()) || searchTerm.ToLower().Contains(p.SearchTerm.ToLower()) || searchTerm.ToLower().Contains(p.Name.ToLower()) || p.SKU.ToString().StartsWith(searchTerm) || p.Department.ToLower().Contains(searchTerm.ToLower())).ToList();
          return items;
+      }
+
+      public List<Item> GetInventory()
+      {
+         return inventory;
       }
 
       internal List<Item> GetItems(List<int> _itemskus)
@@ -73,6 +78,12 @@ namespace POSBackend
 
          else
             inventory.Add(item);
+      }
+
+      public void AddExistingItem(int sku)
+      {
+         Item foundItem = search(sku.ToString()).FirstOrDefault();
+         foundItem.AddInventory();
       }
 
       public Item GetItem(int SKU)

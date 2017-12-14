@@ -1,0 +1,19 @@
+﻿<h2>@ViewData["Title"]</h2>
+
+@foreach (var item in ViewBag.Inventory)
+{
+   <div class="row nav-tabs">
+      <div class="col-sm-4">
+         <p> </p>
+         <img width="@item.ImageWidth" height="@item.ImageHeight" src="data:image/jpeg;base64,@item.ImageFile" />
+         <p> </p>
+      </div>
+      <div class="col-sm-4">
+         <h3 style="font-size: 20px"><b>@item.Name</b></h3>
+         <p>Price: $@item.Price</p>
+         <p>SKU Number: @item.SKU</p>
+         <p>Quantity Available: @item.Count</p>
+         <button id="AddMore" onclick="AddInventory(@item.SKU)">Add More To Inventory</button>
+      </div>
+   </div>
+}
