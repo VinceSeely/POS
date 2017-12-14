@@ -22,12 +22,22 @@ namespace POSBackend
          orders = new List<Order>();
       }
 
-      internal void AddOrder(Dictionary<int, int> items, float total)
+      internal int AddOrder(Dictionary<int, int> items, float total)
       {
-         var skus = items.Select(item => item.Key).ToList();
-         var newOrder = new Order(skus, total);
+         var newOrder = new Order(items, total);
          Inventory.InventoryInstance.RemoveItems(items);
          orders.Add(newOrder);
+         return newOrder.OrderNumber;
+      }
+
+      internal List<Order> GetOrders(List<int> orderNumbers)
+      {
+         return orders.Where(p => orderNumbers.Contains(p.OrderNumber)).ToList();
+      }
+
+      internal Dictionary<int, int> GetOrder(int orderNumber)
+      {
+         return orders.FirstOrDefault(p => p.OrderNumber == orderNumber).getOrder();
       }
    }
 }

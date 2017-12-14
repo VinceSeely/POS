@@ -9,33 +9,33 @@ namespace POSBackend
 {
    public class Order
    {
-      private List<int> itemSkus = new List<int>();
+      private Dictionary<int, int> itemQuantities= new Dictionary<int, int>();
       private float totalPrice = 0;
       private int orderNumber = 0;
-      public int OrderNubmer { get { return orderNumber; } }
+      public int OrderNumber { get { return orderNumber; } }
       private static int nextOrderNumber = 0;
-      public Order(List<int> products, float price)
+      public Order(Dictionary<int, int> products, float price)
       {
          orderNumber = nextOrderNumber;
          nextOrderNumber++;
-         itemSkus = products;
+         itemQuantities = products;
          totalPrice = price;
       }
 
 
-      public Order getOrder(int orderNum)
+      public Dictionary<int,int> getOrder()
       {
-         return this;
+         return itemQuantities;
       }
 
       public string toString()
       {
          string combinedString = "";
-         int count = itemSkus.Count;
+         int count = itemQuantities.Count;
 
          for (int i = 0; i < count; i++)
          {
-            combinedString += ((itemSkus[i]).ToString() + System.Environment.NewLine);
+            combinedString += ((itemQuantities[i]).ToString() + System.Environment.NewLine);
          }
 
          return combinedString;

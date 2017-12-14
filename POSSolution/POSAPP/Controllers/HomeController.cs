@@ -22,6 +22,7 @@ namespace POSAPP.Controllers
 
       public IActionResult Final()
       {
+         loadData("Final");
          return View();
       }
 
@@ -43,11 +44,6 @@ namespace POSAPP.Controllers
          return 'T';
       }
 
-      private void MicDrop()
-      {
-         Response.Redirect("/Home/Final");
-         
-      }
 
       public IActionResult Search(string searchTerm)
       {
@@ -77,7 +73,15 @@ namespace POSAPP.Controllers
       public IActionResult Orders()
       {
          loadData("Orders");
-         ViewData["Message"] = "Recent Orders:";
+         ViewBag.Orders = AccountManager.ACMInstance.GetOrders();
+         return View();
+      }
+
+      public IActionResult Order(int orderNumber)
+      {
+         loadData("Order");
+         ViewBag.Order = AccountManager.ACMInstance.GetOrder(orderNumber);
+         ViewBag.OrderNumber = orderNumber;
 
          return View();
       }
@@ -131,9 +135,9 @@ namespace POSAPP.Controllers
          return View();
       }
 
-      public void UpdateInventoryCount(int sku)
+      public void UpdateInventoryCount(int sku, int count)
       {
-         Inventory.InventoryInstance.AddExistingItem(sku);
+         Inventory.InventoryInstance.AddExistingItem(sku, count);
       }
 
       private void loadData(string title, string username = "")

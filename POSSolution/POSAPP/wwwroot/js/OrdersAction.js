@@ -21,7 +21,11 @@ function checkout()
       url: "/Home/Checkout",
       success: function (data) {
          if (data == 'T')
-            alert("checked out");
+         {
+            alert("Order Placed");
+            window.location.reload();
+         }
+            
          else if (data == 'D')
             location.href = "Final";
         

@@ -19,9 +19,12 @@
 
 function AddInventory(sku)
 {
+   var elementName = "quantity " + sku;
+   var element = document.getElementById(elementName);
+   var count = element.value;
    $.ajax({
       url: "/Home/UpdateInventoryCount",
-      data: { 'sku': sku }
+      data: { 'sku': sku , 'count': count}
    });
    window.location.reload();
 }

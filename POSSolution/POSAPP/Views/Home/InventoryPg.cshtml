@@ -10,10 +10,12 @@
       </div>
       <div class="col-sm-4">
          <h3 style="font-size: 20px"><b>@item.Name</b></h3>
-         <p>Price: $@item.Price</p>
+         <p>Price: $@(@item.Price.ToString("0.00"))</p>
          <p>SKU Number: @item.SKU</p>
          <p>Quantity Available: @item.Count</p>
-         <button id="AddMore" onclick="AddInventory(@item.SKU)">Add More To Inventory</button>
+         <input type="number" id="quantity @item.SKU" placeholder="0" />
+         <button id="AddMore" onclick="AddInventory(@item.SKU)">Update Inventory</button>
+
       </div>
    </div>
 }

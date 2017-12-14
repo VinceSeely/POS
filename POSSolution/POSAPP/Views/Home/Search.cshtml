@@ -15,7 +15,7 @@
       </div>
       <div class="col-sm-4">
          <h3 style="font-size: 20px"><b>@item.Name</b></h3>
-         <p>Price: $@item.Price</p>
+         <p>Price: $@(@item.Price.ToString("0.00"))</p>
          <p>SKU Number: @item.SKU</p>
          <p>Quantity Available: @item.Count</p>
       </div>

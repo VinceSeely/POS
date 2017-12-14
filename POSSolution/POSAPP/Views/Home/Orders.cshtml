@@ -1,7 +1,10 @@
-﻿@{
-   ViewData["Title"] = "Orders";
+﻿<h2>@ViewData["Title"]</h2>
+@foreach (var order in ViewBag.Orders)
+{
+   <div class="row">
+      <p> </p>
+      <a href="/Home/Order?orderNumber=@order.OrderNumber"><h2>@order.OrderNumber</h2></a> 
+      <p> </p>
+   </div>
 }
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
 
-<p>Order info goes here</p>

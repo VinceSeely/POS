@@ -38,9 +38,9 @@ namespace POSBackend
          sku = newSku;
       }
 
-      public void AddInventory()
+      public void AddInventory(int value)
       {
-         count++;
+         count += value;
       }
 
       public void RemoveFromInventory(int amount)

@@ -80,10 +80,10 @@ namespace POSBackend
             inventory.Add(item);
       }
 
-      public void AddExistingItem(int sku)
+      public void AddExistingItem(int sku, int count)
       {
          Item foundItem = search(sku.ToString()).FirstOrDefault();
-         foundItem.AddInventory();
+         foundItem.AddInventory(count);
       }
 
       public Item GetItem(int SKU)

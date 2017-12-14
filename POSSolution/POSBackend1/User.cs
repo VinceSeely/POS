@@ -14,7 +14,7 @@ namespace POSBackend
       //private string username;
       //private string password;
       // private string phoneNumber;
-
+      private List<int> orderNumbers = new List<int>();
       public string Password { get; set; }
       public string Username { get; set; }
       public string PhoneNumber { get; set; }
@@ -93,8 +93,15 @@ namespace POSBackend
 
       internal void placeOrder()
       {
-         OrderManger.OrderMangerInstance.AddOrder(UserCart.Items, UserCart.Total);
+         orderNumbers.Add( OrderManger.OrderMangerInstance.AddOrder(UserCart.Items, UserCart.Total));
          UserCart = new Cart();
       }
+
+      internal List<Order> getOrders()
+      {
+         return OrderManger.OrderMangerInstance.GetOrders(orderNumbers);
+      }
+
+      //internal Order getOrder(int orderNumber)
    }
 }

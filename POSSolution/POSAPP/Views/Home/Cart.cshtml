@@ -17,7 +17,7 @@
       </div>
       <div class="col-sm-4">
          <h3 style="font-size: 20px"><b>@itemQuant.Key.Name</b></h3>
-         <p>Price: $@itemQuant.Key.Price</p>
+         <p>Price: $@(@itemQuant.Key.Price.ToString("0.00"))</p>
       </div>
       <div class="col-sm-4">
          <h3 style="font-size: 20px"><b> Total Number: @itemQuant.Value</b></h3>

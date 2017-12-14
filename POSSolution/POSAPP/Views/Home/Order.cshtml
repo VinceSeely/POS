@@ -1,0 +1,19 @@
+﻿<h2>OrderNumber: @ViewBag.OrderNumber</h2>
+
+@foreach (var itemQuant in ViewBag.Order)
+{
+<div class="row nav-tabs">
+   <div class="col-sm-4">
+      <p> </p>
+      <img width="@itemQuant.Key.ImageWidth" height="@itemQuant.Key.ImageHeight" src="data:image/jpeg;base64,@itemQuant.Key.ImageFile" />
+      <p> </p>
+   </div>
+   <div class="col-sm-4">
+      <h3 style="font-size: 20px"><b>@itemQuant.Key.Name</b></h3>
+      <p>Price: $@(@itemQuant.Key.Price.ToString("0.00"))</p>
+   </div>
+   <div class="col-sm-4">
+      <h3 style="font-size: 20px"><b> Total Number: @itemQuant.Value</b></h3>
+   </div>
+</div>
+}

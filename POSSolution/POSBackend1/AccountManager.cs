@@ -70,11 +70,29 @@ namespace POSBackend
          return itemQuant;
       }
 
+      public List<Order> GetOrders()
+      {
+         return currentUser.getOrders();
+      }
+
       public User GetCurrentUser()
       {
          return currentUser;
       }
 
+      public Dictionary<Item, int> GetOrder(int orderNumber)
+      {
+         var order = OrderManger.OrderMangerInstance.GetOrder(orderNumber);
+         var itemSkus = order.Select(p => p.Key).ToList();
+         var items = Inventory.InventoryInstance.GetItems(itemSkus);
+         var itemQuant = new Dictionary<Item, int>();
+         foreach (var item in items)
+         {
+            itemQuant[item] = order[item.SKU];
+         }
+         return itemQuant;
+
+      }
 
       public bool CreateAccount(string username, string firstName, string lastName, string password, string phoneNumber, Address address)
       {

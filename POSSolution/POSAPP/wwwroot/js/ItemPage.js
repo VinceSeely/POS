@@ -22,7 +22,11 @@ function AddToCart(sku)
       data: { 'sku': sku },
       success: function (data) {
          if (data)
-            alert("success");
+         {
+            location.href = "/Home/Search?searchTerm=";
+            alert("Successfully added to cart");
+         }
+            
       }
    });
 }
