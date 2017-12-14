@@ -29,9 +29,20 @@ namespace POSBackend
                       let item = line.Split(',')
                       select new Item(item[0], int.Parse(item[1]), item[3], item[4], int.Parse(item[5]), float.Parse(item[2]), int.Parse(item[6]), $"{Directory.GetCurrentDirectory()}\\wwwroot\\images\\{item[0]}.jpg", int.Parse(item[7]), int.Parse(item[8]))).ToList();
       }
+
+      internal void RemoveItems(Dictionary<int, int> items)
+      {
+         foreach (var itemskuQuantPair in items)
+         {
+            var item = new Item(itemskuQuantPair.Key);
+            var index = inventory.IndexOf(item);
+            inventory.ElementAt(index).Count = -itemskuQuantPair.Value;
+         }
+      }
+
       /**
-       * Searches for the item in the list 
-       */
+* Searches for the item in the list 
+*/
       public List<Item> search(string searchTerm)
       {
          if (searchTerm == null)
@@ -42,6 +53,12 @@ namespace POSBackend
          return items;
       }
 
+      internal List<Item> GetItems(List<int> _itemskus)
+      {
+         return inventory.Where(item => _itemskus.Contains(item.SKU)).ToList();
+         //throw new NotImplementedException();
+      }
+
       /**
        * Searches for an item in the inventory
        * if item is found it increments the count according to added item count
@@ -49,7 +66,7 @@ namespace POSBackend
        */
       public void addItem(Item item)
       {
-         Item itemFound = inventory.FirstOrDefault(p => p.Equals(item)) ;
+         Item itemFound = inventory.FirstOrDefault(p => p.Equals(item));
 
          if (itemFound != null)
             ;// update existing item count
@@ -58,9 +75,9 @@ namespace POSBackend
             inventory.Add(item);
       }
 
-        public Item GetItem(int SKU)
-        {
-            return inventory.FirstOrDefault(p => p.SKU == SKU);
-        }
-    }
+      public Item GetItem(int SKU)
+      {
+         return inventory.FirstOrDefault(p => p.SKU == SKU);
+      }
+   }
 }

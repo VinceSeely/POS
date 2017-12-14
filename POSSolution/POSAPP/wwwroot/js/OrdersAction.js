@@ -14,3 +14,15 @@
 //      }
 //   });
 //}
+
+function checkout()
+{
+   $.ajax({
+      url: "/Home/Checkout",
+      success: function (data) {
+         if (data)
+            alert("checked out");
+         window.location.reload();
+      }
+   });
+}

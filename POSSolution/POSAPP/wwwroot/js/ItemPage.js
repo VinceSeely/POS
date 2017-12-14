@@ -14,3 +14,15 @@
       }
    });
 }
+
+function AddToCart(sku)
+{
+   $.ajax({
+      url: "/Home/AddToCart",
+      data: { 'sku': sku },
+      success: function (data) {
+         if (data)
+            alert("success");
+      }
+   });
+}

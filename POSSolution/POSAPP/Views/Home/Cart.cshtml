@@ -3,5 +3,32 @@
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
+@{ 
+   var total = 0.0;
+}
 
-<p>Current Cart goes here</p>
+@foreach (var itemQuant in ViewBag.Cart)
+{
+   <div class="row nav-tabs">
+      <div class="col-sm-4">
+         <p> </p>
+         <img width="@itemQuant.Key.ImageWidth" height="@itemQuant.Key.ImageHeight" src="data:image/jpeg;base64,@itemQuant.Key.ImageFile" />
+         <p> </p>
+      </div>
+      <div class="col-sm-4">
+         <h3 style="font-size: 20px"><b>@itemQuant.Key.Name</b></h3>
+         <p>Price: $@itemQuant.Key.Price</p>
+      </div>
+      <div class="col-sm-4">
+         <h3 style="font-size: 20px"><b> Total Number: @itemQuant.Value</b></h3>
+         @{total += @itemQuant.Value * @itemQuant.Key.Price;}
+         <h3 style="font-size: 20px"><b> Total Price: $@((@itemQuant.Value * @itemQuant.Key.Price).ToString("0.00"))</b></h3>
+      </div>
+   </div>
+}
+<div class="pull-right">
+   <h1>Total: $@(@total.ToString("0.00"))</h1>
+   <div class="pull-right">
+      <button id="CheckoutButton" class="btn-lg" onclick="checkout()">Checkout</button>
+   </div>
+</div>

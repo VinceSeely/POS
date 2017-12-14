@@ -7,35 +7,38 @@ using System.Text;
 
 namespace POSBackend
 {
-    public class Order
-    {
-        List<Item> itemList = new List<Item>();
-        float totalPrice = 0;
-        int orderNumber = 0;
-        public Order(int number, List<Item> products, float price)
-        {
-            orderNumber++;
-            itemList = products;
-            totalPrice = price;
-        }
+   public class Order
+   {
+      private List<int> itemSkus = new List<int>();
+      private float totalPrice = 0;
+      private int orderNumber = 0;
+      public int OrderNubmer { get { return orderNumber; } }
+      private static int nextOrderNumber = 0;
+      public Order(List<int> products, float price)
+      {
+         orderNumber = nextOrderNumber;
+         nextOrderNumber++;
+         itemSkus = products;
+         totalPrice = price;
+      }
 
 
-        public Order getOrder(int orderNum)
-        {
-            return this;
-        }
+      public Order getOrder(int orderNum)
+      {
+         return this;
+      }
 
-        public string toString()
-        {
-            string combinedString = "";
-            int count = itemList.Count;
-            
-            for (int i = 0; i < count; i++)
-            {
-                combinedString += ((itemList[i]).ToString() + System.Environment.NewLine);
-            }
+      public string toString()
+      {
+         string combinedString = "";
+         int count = itemSkus.Count;
 
-            return combinedString;
-        }
-    }
+         for (int i = 0; i < count; i++)
+         {
+            combinedString += ((itemSkus[i]).ToString() + System.Environment.NewLine);
+         }
+
+         return combinedString;
+      }
+   }
 }

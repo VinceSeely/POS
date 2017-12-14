@@ -20,7 +20,7 @@
          success: function (data) {
             if (!data) {
                alert("Username is Taken!");
-               document.getElementById("Username").value;
+               document.getElementById("Username").value = "";
             }
             else {
                if (password != confirmPassword) {

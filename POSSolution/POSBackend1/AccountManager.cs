@@ -25,9 +25,49 @@ namespace POSBackend
          }
       }
 
+      public void Checkout()
+      {
+         currentUser.placeOrder();
+      }
+
+      public bool AddToCart(int sku)
+      { 
+         return currentUser.AddToCart(sku);
+      }
+
       private AccountManager()
       {
+         userList[0].AddCreditCard(new CreditCard("3212123456781234",
+            111, new expDate { month = 01, year = 2019 }, "James Cahill",
+            new Address
+            {
+               streetAddress = "Check",
+               state = "WI",
+               country = "USA",
+               city = "Platteville",
+               zipCode = 53818
+            }));
+         userList[0].UserAddress = new Address
+         {
+            streetAddress = "test",
+            state = "WI",
+            country = "USA",
+            city = "Platteville",
+            zipCode = 53818
+         };
+      }
 
+      public Dictionary<Item, int> GetCart()
+      {
+         var cartDictionary = currentUser.UserCart.Items;
+         var itemSkus = cartDictionary.Select(p => p.Key).ToList();
+         var items = Inventory.InventoryInstance.GetItems(itemSkus);
+         var itemQuant = new Dictionary<Item, int>();
+         foreach(var item in items)
+         {
+            itemQuant[item] = cartDictionary[item.SKU];
+         }
+         return itemQuant;
       }
 
       public User GetCurrentUser()

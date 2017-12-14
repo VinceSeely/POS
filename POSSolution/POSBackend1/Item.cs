@@ -33,6 +33,11 @@ namespace POSBackend
       public int ImageWidth { get { return imageWidth; } }
       public int ImageHeight { get { return imageHeight; } }
 
+      public Item(int newSku)
+      {
+         sku = newSku;
+      }
+
       public Item(string newName, int newSku, string newDepartment, string newType, int newOrderMoreLevel, float newPrice, int newCount, string newImagePath, int newImageWidth, int newImageHeight)
       {
          name = newName;

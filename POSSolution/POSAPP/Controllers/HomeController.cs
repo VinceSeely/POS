@@ -19,6 +19,17 @@ namespace POSAPP.Controllers
          return View();
       }
 
+      public bool AddToCart(int sku)
+      {
+         return AccountManager.ACMInstance.AddToCart(sku);
+      }
+
+      public bool Checkout()
+      {
+         AccountManager.ACMInstance.Checkout();
+         return true;
+      }
+
       public IActionResult Search(string searchTerm)
       {
          loadData($"Search Results For {searchTerm}");
@@ -31,24 +42,22 @@ namespace POSAPP.Controllers
 
       public IActionResult Cart()
       {
-         loadData("Your Cart", "LoggedIn");
-         //.ACMInstance;
-         //var temp1 = new AccountManager();
-         //var temp = AccountManager.ACMInstance.Login("admin","bullshit");
+         loadData("Your Cart");
+         ViewBag.Cart = AccountManager.ACMInstance.GetCart();
          return View();
       }
 
       public IActionResult Profile()
       {
-         loadData("Profile", "LoggedIn");
-
+         loadData("Profile");
+         ViewBag.User = AccountManager.ACMInstance.GetCurrentUser();
 
          return View();
       }
 
       public IActionResult Orders()
       {
-         loadData("Orders", "LoggedIn");
+         loadData("Orders");
          ViewData["Message"] = "Recent Orders:";
 
          return View();
@@ -66,7 +75,7 @@ namespace POSAPP.Controllers
 
       public IActionResult Register()
       {
-         ViewData["Title"] = "Register";
+         loadData("Register");
 
          return View();
       }
@@ -94,7 +103,7 @@ namespace POSAPP.Controllers
          return AccountManager.ACMInstance.IsUsernameAvailable(username);
       }
 
-      private void loadData(string title, string loginVal = "", string username = "")
+      private void loadData(string title, string username = "")
       {
          ViewData["Title"] = title;
 

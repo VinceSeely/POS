@@ -9,5 +9,10 @@ namespace POSBackend
         public string country { get; set; }
         public string city { get; set; }
         public int zipCode { get; set; }
-    }
+
+      public string GetRestOfAddress()
+      {
+         return $"{city}, {state}, {zipCode}, {country}";
+      }
+   }
 }
